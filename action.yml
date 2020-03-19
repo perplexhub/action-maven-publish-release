@@ -1,4 +1,4 @@
-name: action-maven-publish
+name: action-maven-publish-snapshot
 author: Samuel Meuli
 description: GitHub Action for automatically publishing Maven packages
 
