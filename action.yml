@@ -15,6 +15,12 @@ inputs:
   nexus_password:
     description: Password for your Nexus account
     required: true
+  git_username:
+    description: Username for your Git repository manager account
+    required: true
+  git_email:
+    description: Email for your Git repository manager account
+    required: true
   server_id:
     description: Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
     required: false
@@ -22,10 +28,6 @@ inputs:
   directory:
     description: Directory of the Maven project which should be deployed
     required: false
-  maven_goals_phases:
-    description: Maven goals and build phases to execute
-    required: false
-    default: release:clean release:prepare release:perform
   maven_args:
     description: Additional arguments to pass to the Maven command
     required: false
