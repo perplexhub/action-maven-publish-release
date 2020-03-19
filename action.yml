@@ -21,6 +21,9 @@ inputs:
   git_email:	
     description: Email for your Git repository manager account	
     required: true
+  git_origin_url:	
+    description: URL for your Git repository
+    required: true
   server_id:
     description: Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
     required: false
