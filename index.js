@@ -80,13 +80,14 @@ function runAction() {
 	// deployment and not in the install phase
 	const gitUsername = getInput("git_username", true);
 	const gitEmail = getInput("git_email", true);
+	const gitOriginUrl = getInput("git_origin_url", true);
 	log("Releasing the Maven project");
 	run(
-		`git config --global user.email "${gitEmail}";git config --global user.name "${gitUsername}";mvn release:clean release:prepare --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
+		`git config --global user.email "${gitEmail}";git config --global user.name "${gitUsername}";git remote set-url origin ${gitOriginUrl};mvn release:clean release:prepare --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
 	);
 	run(
-		`git config --global user.email "${gitEmail}";git config --global user.name "${gitUsername}";mvn release:perform --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
+		`git config --global user.email "${gitEmail}";git config --global user.name "${gitUsername}";git remote set-url origin ${gitOriginUrl};mvn release:perform --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
 	);
 }
