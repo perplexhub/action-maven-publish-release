@@ -75,16 +75,17 @@ function runAction() {
 		unlinkSync(gpgKeyPath);
 	}
 
+	const activateProfiles = getInput("activate_profiles", true).trim();
 	// Deploy to Nexus
 	// The "deploy" profile is used in case the user wants to perform certain steps only during
 	// deployment and not in the install phase
 	log("Releasing the Maven project");
 	run(
-		`mvn release:clean release:prepare --batch-mode --activate-profiles getInput("activate_profiles").trim() --settings ${mavenSettingsPath} ${mavenArgs}`,
+		`mvn release:clean release:prepare --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
 	);
 	run(
-		`mvn release:perform --batch-mode --activate-profiles getInput("activate_profiles").trim() --settings ${mavenSettingsPath} ${mavenArgs}`,
+		`mvn release:perform --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
 	);
 }
