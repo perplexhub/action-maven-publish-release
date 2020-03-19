@@ -1,4 +1,4 @@
-name: action-maven-publish-snapshot
+name: action-maven-publish-release
 author: Samuel Meuli
 description: GitHub Action for automatically publishing Maven packages
 
@@ -25,7 +25,7 @@ inputs:
   maven_goals_phases:
     description: Maven goals and build phases to execute
     required: false
-    default: clean deploy
+    default: release:clean release:prepare release:perform
   maven_args:
     description: Additional arguments to pass to the Maven command
     required: false
