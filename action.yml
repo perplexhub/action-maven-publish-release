@@ -15,12 +15,6 @@ inputs:
   nexus_password:
     description: Password for your Nexus account
     required: true
-  git_username:
-    description: Username for your Git repository manager account
-    required: true
-  git_email:
-    description: Email for your Git repository manager account
-    required: true
   server_id:
     description: Nexus server ID as specified in your project's `nexus-staging-maven-plugin` and `distributionManagement` configurations
     required: false
