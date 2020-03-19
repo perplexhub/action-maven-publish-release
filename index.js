@@ -60,7 +60,6 @@ function runAction() {
 	getInput("nexus_password", true);
 
 	const mavenArgs = getInput("maven_args", true);
-	const mavenGoalsPhases = getInput("maven_goals_phases", true);
 
 	// Import GPG key into keychain
 	const privateKey = getInput("gpg_private_key").trim();
@@ -79,7 +78,11 @@ function runAction() {
 	// Deploy to Nexus
 	// The "deploy" profile is used in case the user wants to perform certain steps only during
 	// deployment and not in the install phase
+	const gitUsername = getInput("git_username", true);
+	const gitEmail = getInput("git_email", true);
 	log("Releasing the Maven project");
+	run(`git config --global user.email "${gitEmail}"`);
+	run(`git config --global user.name "${gitUsername}"`);
 	run(
 		`mvn release:clean release:prepare --batch-mode --activate-profiles ${activateProfiles} --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
