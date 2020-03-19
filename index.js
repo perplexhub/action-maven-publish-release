@@ -80,7 +80,7 @@ function runAction() {
 	// deployment and not in the install phase
 	log("Deploying the Maven project…");
 	run(
-		`mvn ${mavenGoalsPhases} --batch-mode --activate-profiles deploy --settings ${mavenSettingsPath} ${mavenArgs}`,
+		`mvn ${mavenGoalsPhases} --batch-mode --activate-profiles release --settings ${mavenSettingsPath} ${mavenArgs}`,
 		getInput("directory") || null,
 	);
 }
